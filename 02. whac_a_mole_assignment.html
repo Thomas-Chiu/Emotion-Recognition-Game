@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./animate.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"> -->
+    <title>Document</title>
+    <style>
+        body {
+            width: 85%;
+            margin: 5% auto;
+            background: #ccc;
+            position: relative;
+        }
+
+        table {
+            background: lightcyan;
+            float: right;
+            cursor: url(./Images/Cursors/burger.png) 50 50, auto;
+        }
+
+        table tr td {
+            width: 150px;
+            height: 150px;
+            /* 隱藏溢出td 的動畫效果 */
+            overflow: hidden;
+        }
+
+        .hole {
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+
+        .black {
+            background: black;
+        }
+
+        /* 快樂 */
+        #amusement {
+            background: url(./Images/Emotion/amusement.png) no-repeat center center/cover;
+        }
+
+        /* 生氣 */
+        #anger {
+            background: url(./Images/Emotion/anger.png) no-repeat center center/cover;
+        }
+
+        /* 害羞 */
+        #embarrassment {
+            background: url(./Images/Emotion/embarrassment.png) no-repeat center center/cover;
+        }
+
+        /* 害怕 */
+        #fear {
+            background: url(./Images/Emotion/fear.png) no-repeat center center/cover;
+        }
+
+        /* 喜悅 */
+        #happiness {
+            background: url(./Images/Emotion/happiness.png) no-repeat center center/cover;
+        }
+
+        /* 痛苦 */
+        #pain {
+            background: url(./Images/Emotion/pain_2.png) no-repeat center center/cover;
+        }
+
+        /* 難過 */
+        #sadness {
+            background: url(./Images/Emotion/sadness.png) no-repeat center center/cover;
+        }
+
+        /* 羞愧 */
+        #shame {
+            background: url(./Images/Emotion/shame.png) no-repeat center center/cover;
+        }
+
+        /* 憤怒 */
+        #furious {
+            background: url(./Images/Emotion/furious.png) no-repeat center center/cover;
+        }
+
+        /* 興奮 */
+        #excited {
+            background: url(./Images/Emotion/excited.png) no-repeat center center/cover;
+        }
+
+        /* 噁心 */
+        #disgust {
+            background: url(./Images/Emotion/disgust.png) no-repeat center center/cover;
+        }
+
+        /* 驚訝 */
+        #surprise {
+            background: url(./Images/Emotion/surprise.png) no-repeat center center/cover;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="animated slideInUp infinite">Example</h1>
+    <table border="1">
+        <tr>
+            <td id="hole9">
+                <div class="hole animated slideInUp" id="amusement"></div>
+            </td>
+            <td id="hole10">
+                <div class="hole animated slideInUp" id="anger"></div>
+            </td>
+            <td id="hole11">
+                <div class="hole animated slideInUp" id="embarrassment"></div>
+            </td>
+            <td id="hole12">
+                <div class="hole animated slideInUp" id="fear"></div>
+            </td>
+        </tr>
+        <tr>
+            <td id="hole5">
+                <div class="hole animated slideInUp" id="happiness"></div>
+            </td>
+            <td id="hole6">
+                <div class="hole animated slideInUp" id="pain"></div>
+            </td>
+            <td id="hole7">
+                <div class="hole animated slideInUp" id="sadness"></div>
+            </td>
+            <td id="hole8">
+                <div class="hole animated slideInUp" id="shame"></div>
+            </td>
+        </tr>
+        <tr>
+            <td id="hole1">
+                <div class="hole animated slideInUp" id="furious"></div>
+            </td>
+            <td id="hole2">
+                <div class="hole animated slideInUp" id="excited"></div>
+            </td>
+            <td id="hole3">
+                <div class="hole animated slideInUp" id="disgust"></div>
+            </td>
+            <td id="hole4">
+                <div class="hole animated slideInUp" id="surprise"></div>
+            </td>
+        </tr>
+    </table>
+    <input type="button" value="Start" id="btnStart"><br>
+    Time Left: <span id="txtTime">0</span><br>
+    Your Score: <span id="txtScore">0</span>
+    <hr>
+    <strong>Ranking</strong><br>
+    Top Player: <span id="txtTopPlayer">none</span><br>
+    Highest Score: <span id="txtHighScore">0</span>
+
+    <script>
+        const holes = document.getElementsByClassName(`hole`)
+        const btnStart = document.getElementById(`btnStart`)
+        const txtTime = document.getElementById(`txtTime`)
+        const txtScore = document.getElementById(`txtScore`)
+        const txtTopPlayer = document.getElementById(`txtTopPlayer`)
+        const txtHighScore = document.getElementById(`txtHighScore`)
+        const audio = new Audio()
+        audio.src = `./Audio/yay.mp3`
+        // 控制.happiness 裡面的內容
+        // const happiness = document.querySelector(`.happiness`)
+
+        let score = 0
+        let inGame = false
+        let timeLeft = 0
+        let timer = 0
+        let highScore = { name: ``, score: 0 }
+        // 這行看不懂
+        let storage = JSON.parse(localStorage.getItem(`highScore`))
+        if (storage != null) {
+            highScore.name = storage.name
+            highScore.score = storage.score
+            txtTopPlayer.innerHTML = highScore.name
+            txtHighScore.innerHTML = highScore.score
+        }
+
+
+        btnStart.onclick = () => {
+            btnStart.disabled = true
+            inGame = true
+            timer = setInterval(game, 2000)
+            game()
+            score = 0
+            timeLeft = 5
+            txtTime.innerHTML = timeLeft
+        }
+
+
+        const game = () => {
+            // 清除所有格子的屬性
+            for (let i = 0; i < holes.length; i++) {
+                holes[i].classList.remove(`animated`, `rubberBand`)
+                holes[i].classList.add(`animated`, `slideInUp`)
+                holes[i].style.display = `none`
+                // holes[i].style.background = ``
+            }
+
+            for (let i = 0; i < 4; i++) {
+                // 重複選號的問題待處理
+                let rand = Math.floor(Math.random() * 12)
+                holes[rand].style.display = `block`
+                console.log(rand)
+            }
+            for (let hole of holes) {
+                hole.onclick = () => {
+                    /* 其實這裡不用if 也可以跑
+                    if (inGame && hole.style.display == `block`) {
+                        or
+                    if (inGame && hole.classList.contains(`animated`, `slideInUp`)) {
+                     }
+                    */
+                    hole.classList.remove(`animated`, `slideInUp`)
+                    hole.classList.add(`animated`, `rubberBand`)
+                    score++
+                    txtScore.innerHTML = score
+                }
+            }
+
+            timeLeft--
+            txtTime.innerHTML = timeLeft
+
+            if (timeLeft == 0) {
+                inGame = false
+                clearInterval(timer)
+                for (let hole of holes) {
+                    hole.style.display = `none`
+                }
+                btnStart.disabled = false
+                alert(`You score: ${score}`)
+
+                if (storage == null || score > highScore.score) {
+                    audio.play()
+                    const input = prompt(`Congrats, you're the Top! Insert your name.`)
+                    if (input != null && input.trim() != ``) {
+                        highScore.name = input
+                        highScore.score = score
+                        txtTopPlayer.innerHTML = highScore.name
+                        txtHighScore.innerHTML = highScore.score
+                        // 這邊看不懂
+                        localStorage.setItem(`highScore`, JSON.stringify(highScore))
+                    }
+                }
+
+            }
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>
