@@ -5,27 +5,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./animate.css">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"> -->
-    <title>Document</title>
+    <title>Which Emotion Am I?</title>
     <style>
         body {
             width: 85%;
-            margin: 5% auto;
+            margin: 1.5% auto;
             background: #ccc;
             position: relative;
         }
 
-        table {
+        section {
+            width: 30%;
+            clear: both;
+            font-size: 1.5rem;
+            /* margin: auto; */
+        }
+
+
+        #emotion {
             background: lightcyan;
             float: right;
             cursor: url(./Images/Cursors/burger.png) 50 50, auto;
         }
 
-        table tr td {
-            width: 150px;
-            height: 150px;
+        #emotion tr td {
+            width: 200px;
+            height: 200px;
             /* 隱藏溢出td 的動畫效果 */
             overflow: hidden;
+            border: 10px solid #ccc;
+            position: relative;
+
+        }
+
+        #txtEmotion {
+            color: olive;
+            font-size: 2rem;
+            font-family: 微軟正黑體;
+            font-weight: bold;
+            text-align: center;
+            line-height: 150px;
+            padding: 5% 0% 5% 0%;
+        }
+
+        #txtEmotion tr td {
+            width: 150px;
+            height: 150px;
+            float: left;
+            border-top: 3px dotted olive;
+            border-left: 3px dotted olive;
+        }
+
+
+
+        .borderbot {
+            border-bottom: 3px dotted olive;
+        }
+
+        .borderrig {
+            border-right: 3px dotted olive;
         }
 
         .hole {
@@ -101,8 +139,8 @@
 </head>
 
 <body>
-    <h1 class="animated slideInUp infinite">Example</h1>
-    <table border="1">
+    <!-- <h1 class="animated slideInUp infinite">Example</h1> -->
+    <table id="emotion">
         <tr>
             <td id="hole9">
                 <div class="hole animated slideInUp" id="amusement"></div>
@@ -146,13 +184,35 @@
             </td>
         </tr>
     </table>
-    <input type="button" value="Start" id="btnStart"><br>
-    Time Left: <span id="txtTime">0</span><br>
-    Your Score: <span id="txtScore">0</span>
-    <hr>
-    <strong>Ranking</strong><br>
-    Top Player: <span id="txtTopPlayer">none</span><br>
-    Highest Score: <span id="txtHighScore">0</span>
+    <table id="txtEmotion">
+        <tr>
+            <td id="emid1">興奮</td>
+            <td id="emid2">生氣</td>
+            <td id="emid3">噁心</td>
+            <td id="emid4" class="borderrig">喜悅</tdㄏ>
+        </tr>
+        <tr>
+            <td id="emid5">害羞</td>
+            <td id="emid6">快樂</td>
+            <td id="emid7">害怕</td>
+            <td id="emid8" class="borderrig">羞愧</td>
+        </tr>
+        <tr>
+            <td id="emid9" class="borderbot">憤怒</td>
+            <td id="emid10" class="borderbot">難過</td>
+            <td id="emid11" class="borderbot">驚訝</td>
+            <td id="emid12" class="borderbot borderrig">痛苦</td>
+        </tr>
+    </table>
+    <section>
+        <input type="button" value="Start" id="btnStart"><br>
+        Time Left: <span id="txtTime">0</span><br>
+        Your Score: <span id="txtScore">0</span>
+        <hr>
+        <strong>Ranking</strong><br>
+        Top Player: <span id="txtTopPlayer">none</span><br>
+        Highest Score: <span id="txtHighScore">0</span>
+    </section>
 
     <script>
         const holes = document.getElementsByClassName(`hole`)
@@ -203,9 +263,11 @@
 
             for (let i = 0; i < 4; i++) {
                 // 重複選號的問題待處理
-                let rand = Math.floor(Math.random() * 12)
-                holes[rand].style.display = `block`
-                console.log(rand)
+                let rand = function () {
+                    return Math.floor(Math.random() * 12)
+                }
+                holes[rand()].style.display = `block`
+                console.log(rand())
             }
             for (let hole of holes) {
                 hole.onclick = () => {
@@ -232,7 +294,9 @@
                     hole.style.display = `none`
                 }
                 btnStart.disabled = false
-                alert(`You score: ${score}`)
+                setTimeout(function () {
+                    alert(`You score: ${score}`)
+                }, 100)
 
                 if (storage == null || score > highScore.score) {
                     audio.play()
