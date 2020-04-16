@@ -56,7 +56,9 @@
             border-left: 3px dotted olive;
         }
 
-
+        .gold {
+            background: gold;
+        }
 
         .borderbot {
             border-bottom: 3px dotted olive;
@@ -69,12 +71,9 @@
         .hole {
             width: 100%;
             height: 100%;
-            display: none;
+            /* display: none; */
         }
 
-        .black {
-            background: black;
-        }
 
         /* 快樂 */
         #amusement {
@@ -186,25 +185,26 @@
     </table>
     <table id="txtEmotion">
         <tr>
-            <td id="emid1">興奮</td>
-            <td id="emid2">生氣</td>
-            <td id="emid3">噁心</td>
-            <td id="emid4" class="borderrig">喜悅</tdㄏ>
+            <td class="emid">興奮</td>
+            <td class="emid">生氣</td>
+            <td class="emid">噁心</td>
+            <td class="borderrig emid">喜悅</tdㄏ>
         </tr>
         <tr>
-            <td id="emid5">害羞</td>
-            <td id="emid6">快樂</td>
-            <td id="emid7">害怕</td>
-            <td id="emid8" class="borderrig">羞愧</td>
+            <td class="emid">害羞</td>
+            <td class="emid">快樂</td>
+            <td class="emid">害怕</td>
+            <td class="borderrig emid">羞愧</td>
         </tr>
         <tr>
-            <td id="emid9" class="borderbot">憤怒</td>
-            <td id="emid10" class="borderbot">難過</td>
-            <td id="emid11" class="borderbot">驚訝</td>
-            <td id="emid12" class="borderbot borderrig">痛苦</td>
+            <td class="borderbot emid">憤怒</td>
+            <td class="borderbot emid">難過</td>
+            <td class="borderbot emid">驚訝</td>
+            <td class="borderbot borderrig emid">痛苦</td>
         </tr>
     </table>
     <section>
+        <input type="button" value="Picker" id="btnPicker">
         <input type="button" value="Start" id="btnStart"><br>
         Time Left: <span id="txtTime">0</span><br>
         Your Score: <span id="txtScore">0</span>
@@ -221,10 +221,15 @@
         const txtScore = document.getElementById(`txtScore`)
         const txtTopPlayer = document.getElementById(`txtTopPlayer`)
         const txtHighScore = document.getElementById(`txtHighScore`)
+        const btnPicker = document.getElementById(`btnPicker`)
+        const emid = document.getElementsByClassName(`emid`)
         const audio = new Audio()
         audio.src = `./Audio/yay.mp3`
         // 控制.happiness 裡面的內容
         // const happiness = document.querySelector(`.happiness`)
+        const rand = function (num) {
+            return Math.floor(Math.random() * num)
+        }
 
         let score = 0
         let inGame = false
@@ -241,6 +246,29 @@
         }
 
 
+        // 抽表情執行
+        const click = btnPicker.onclick = function () {
+            btnPicker.disabled = true
+            let timer = setInterval(pick, 250)
+            pick()
+            // 5秒後結束抽表情
+            setTimeout(function () {
+                clearInterval(timer)
+                btnPicker.disabled = false
+            }, 5000);
+        }
+
+
+        // 抽表情函數
+        const pick = function () {
+            for (let e of emid) {
+                e.classList.remove(`gold`)
+            }
+            emid[rand(emid.length)].classList.add(`gold`)
+        }
+
+
+        // 遊戲執行
         btnStart.onclick = () => {
             btnStart.disabled = true
             inGame = true
@@ -251,23 +279,18 @@
             txtTime.innerHTML = timeLeft
         }
 
-
+        // 遊戲函數
         const game = () => {
             // 清除所有格子的屬性
             for (let i = 0; i < holes.length; i++) {
                 holes[i].classList.remove(`animated`, `rubberBand`)
                 holes[i].classList.add(`animated`, `slideInUp`)
                 holes[i].style.display = `none`
-                // holes[i].style.background = ``
             }
 
             for (let i = 0; i < 4; i++) {
-                // 重複選號的問題待處理
-                let rand = function () {
-                    return Math.floor(Math.random() * 12)
-                }
-                holes[rand()].style.display = `block`
-                console.log(rand())
+                holes[rand(holes.length)].style.display = `block`
+                console.log(rand(holes.length))
             }
             for (let hole of holes) {
                 hole.onclick = () => {
@@ -313,10 +336,6 @@
 
             }
         }
-
-
-
-
     </script>
 </body>
 
