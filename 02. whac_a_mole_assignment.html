@@ -5,68 +5,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./animate.css">
+    <link rel="stylesheet" href="./all.min.css">
     <title>Which Emotion Am I?</title>
     <style>
         body {
-            width: 85%;
-            margin: 1.5% auto;
-            background: url(./Images/Emotion/bg.png) repeat center left;
+            width: 75%;
+            margin: 2.5% auto;
+            background: url(./Images/Emotion/bg2.png) repeat center left;
             background-color: whitesmoke;
             position: relative;
+            font-family: Marvel, sans-serif;
+            letter-spacing: 2.5px;
+            line-height: 2;
         }
 
-        section {
+        img {
+            display: block;
+        }
+
+        #sectionTop {
             width: 30%;
             clear: both;
-            font-size: 1.5rem;
-            /* margin: auto; */
+            font-size: 2rem;
+            position: absolute;
+            top: 2.5%;
+            right: -12.5%;
         }
 
+        #sectionBottom {
+            width: 30%;
+            clear: both;
+            font-size: 2rem;
+            position: absolute;
+            bottom: 2.5%;
+            right: -12.5%;
+        }
 
         #emotion {
-            background: lightcyan;
-            float: right;
+            width: 75%;
             cursor: url(./Images/Cursors/burger.png) 50 50, auto;
+            border-radius: 10px;
         }
 
         #emotion tr td {
+            background: lightcyan;
             width: 200px;
             height: 200px;
             /* 隱藏溢出td 的動畫效果 */
             overflow: hidden;
-            border: 10px solid #ccc;
+            border: 2.5px solid #ccc;
             position: relative;
+            border-radius: 10px;
 
         }
 
-        #txtEmotion {
+        #txtEmotionUp {
+            width: 75%;
             color: olive;
             font-size: 2rem;
             font-family: 微軟正黑體;
             font-weight: bold;
             text-align: center;
-            line-height: 150px;
-            padding: 5% 0% 5% 0%;
+            line-height: 2.5;
+            border: 2.5px solid #ccc;
+            background: lightcyan;
+            margin-bottom: 0.5%;
         }
 
-        #txtEmotion tr td {
-            width: 150px;
-            height: 150px;
-            float: left;
-            border-top: 3px dotted olive;
-            border-left: 3px dotted olive;
+        #txtEmotionDown {
+            width: 75%;
+            color: olive;
+            font-size: 2rem;
+            font-family: 微軟正黑體;
+            font-weight: bold;
+            text-align: center;
+            line-height: 2.5;
+            border: 2.5px solid #ccc;
+            background: lightcyan;
+            margin-top: 0.5%;
+        }
+
+        .borderRight {
+            border-right: 5px dotted #ccc;
+            border-radius: 5%;
         }
 
         .gold {
             background: gold;
-        }
-
-        .borderbot {
-            border-bottom: 3px dotted olive;
-        }
-
-        .borderrig {
-            border-right: 3px dotted olive;
         }
 
         .hole {
@@ -139,7 +164,16 @@
 </head>
 
 <body>
-    <!-- <h1 class="animated slideInUp infinite">Example</h1> -->
+    <table id="txtEmotionUp">
+        <tr>
+            <td class="borderRight emid">興奮</td>
+            <td class="borderRight emid">生氣</td>
+            <td class="borderRight emid">噁心</td>
+            <td class="borderRight emid">喜悅</td>
+            <td class="borderRight emid">害羞</td>
+            <td class="emid">快樂</td>
+        </tr>
+    </table>
     <table id="emotion">
         <tr>
             <td id="hole9">
@@ -184,35 +218,33 @@
             </td>
         </tr>
     </table>
-    <table id="txtEmotion">
+    <table id="txtEmotionDown">
         <tr>
-            <td class="emid">興奮</td>
-            <td class="emid">生氣</td>
-            <td class="emid">噁心</td>
-            <td class="borderrig emid">喜悅</tdㄏ>
-        </tr>
-        <tr>
-            <td class="emid">害羞</td>
-            <td class="emid">快樂</td>
-            <td class="emid">害怕</td>
-            <td class="borderrig emid">羞愧</td>
-        </tr>
-        <tr>
-            <td class="borderbot emid">憤怒</td>
-            <td class="borderbot emid">難過</td>
-            <td class="borderbot emid">驚訝</td>
-            <td class="borderbot borderrig emid">痛苦</td>
+            <td class="borderRight emid">害怕</td>
+            <td class="borderRight emid">羞愧</td>
+            <td class="borderRight emid">憤怒</td>
+            <td class="borderRight emid">難過</td>
+            <td class="borderRight emid">驚訝</td>
+            <td class="emid">痛苦</td>
         </tr>
     </table>
-    <section>
-        <input type="button" value="Picker" id="btnPicker">
-        <input type="button" value="Start" id="btnStart"><br>
-        Time Left: <span id="txtTime">0</span><br>
-        Your Score: <span id="txtScore">0</span>
+    <section id="sectionTop">
+        SCORE: <span id="txtScore">0</span><br>
+        TIME LEFT: <span id="txtTime">0</span><br>
         <hr>
-        <strong>Ranking</strong><br>
-        Top Player: <span id="txtTopPlayer">none</span><br>
-        Highest Score: <span id="txtHighScore">0</span>
+        <div>
+            <img src="./Images/pinwheel.svg" alt="pinwheel">
+            <input type="button" value="Picker" id="btnPicker">
+        </div>
+        <div>
+            <input type="button" value="Start" id="btnStart">
+        </div>
+    </section>
+    <section id="sectionBottom">
+        <br><strong>RANKING</strong>
+        <hr>
+        TOP PLAYER: <span id="txtTopPlayer"></span><br>
+        HIGHEST SCORE: <span id="txtHighScore">0</span><br>
     </section>
 
     <script>
@@ -250,7 +282,7 @@
         // 抽表情執行
         const click = btnPicker.onclick = function () {
             btnPicker.disabled = true
-            let timer = setInterval(pick, 250)
+            let timer = setInterval(pick, 350)
             pick()
             // 5秒後結束抽表情
             setTimeout(function () {
