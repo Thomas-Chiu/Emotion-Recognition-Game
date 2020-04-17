@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./animate.css">
-    <link rel="stylesheet" href="./all.min.css">
     <title>Which Emotion Am I?</title>
     <style>
         body {
@@ -16,10 +15,7 @@
             font-family: Marvel, sans-serif;
             letter-spacing: 2.5px;
             line-height: 2;
-        }
-
-        img {
-            display: block;
+            font-family: Marvel, 微軟正黑體;
         }
 
         #sectionTop {
@@ -42,7 +38,7 @@
 
         #emotion {
             width: 75%;
-            cursor: url(./Images/Cursors/burger.png) 50 50, auto;
+            cursor: url(./Images/Cursors/tap.png) 50 50, auto;
             border-radius: 10px;
         }
 
@@ -61,26 +57,50 @@
             width: 75%;
             color: olive;
             font-size: 2rem;
-            font-family: 微軟正黑體;
             font-weight: bold;
             text-align: center;
             line-height: 2.5;
             border: 2.5px solid #ccc;
             background: lightcyan;
             margin-bottom: 0.5%;
+            border-radius: 10px;
         }
 
         #txtEmotionDown {
             width: 75%;
             color: olive;
             font-size: 2rem;
-            font-family: 微軟正黑體;
             font-weight: bold;
             text-align: center;
             line-height: 2.5;
             border: 2.5px solid #ccc;
             background: lightcyan;
             margin-top: 0.5%;
+            border-radius: 10px;
+        }
+
+        #btnPicker {
+            position: absolute;
+            bottom: 15%;
+            left: 2.5%;
+        }
+
+        #btnStart {
+            position: absolute;
+            bottom: 9%;
+            right: 34%;
+        }
+
+        #btnPicker:hover {
+            cursor: pointer;
+        }
+
+        #btnStart:hover {
+            cursor: pointer;
+        }
+
+        .finger {
+            width: 75px;
         }
 
         .borderRight {
@@ -95,7 +115,18 @@
         .hole {
             width: 100%;
             height: 100%;
-            /* display: none; */
+            display: none;
+        }
+
+        .txtClickMe {
+            font-size: 1rem;
+            background-color: darkgray;
+            color: #fff;
+            border-radius: 5px;
+            font-weight: bold;
+            padding: 0 3px;
+            display: inline-block;
+            margin: 50% 17.5% 0 5%;
         }
 
 
@@ -231,11 +262,13 @@
         TIME LEFT: <span id="txtTime">0</span><br>
         <hr>
         <div>
-            <img src="./Images/pinwheel.svg" alt="pinwheel">
-            <input type="button" value="Picker" id="btnPicker">
+            <img id="btnPicker" src="./Images/pinwheel.svg" alt="pinwheel" title="點我選情緒">
+            <img id="btnStart" class="animated infinite pulse fast" src=" ./Images/start_button.svg" alt="start button"
+                title="點我玩遊戲">
         </div>
         <div>
-            <input type="button" value="Start" id="btnStart">
+            <span class="txtClickMe">選情緒</span>
+            <span class="txtClickMe">玩遊戲</span>
         </div>
     </section>
     <section id="sectionBottom">
@@ -301,13 +334,16 @@
 
         // 遊戲執行
         btnStart.onclick = () => {
-            btnStart.disabled = true
-            inGame = true
-            timer = setInterval(game, 2000)
-            game()
-            score = 0
-            timeLeft = 5
-            txtTime.innerHTML = timeLeft
+            // 延遲待處理
+            setTimeout(function () {
+                btnStart.disabled = true
+                inGame = true
+                timer = setInterval(game, 2000)
+                game()
+                score = 0
+                timeLeft = 5
+                txtTime.innerHTML = timeLeft
+            }, 100)
         }
 
         // 遊戲函數
