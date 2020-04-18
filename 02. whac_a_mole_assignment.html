@@ -301,7 +301,7 @@
     </section>
     <section id="sectionBottom">
         SCORE: <span id="txtScore">0</span><br>
-        TIME LEFT: <span id="txtTime">40</span><br>
+        TIME LEFT: <span id="txtTime">20</span><br>
         <!-- <br>RANKING -->
         <hr>
         TOP PLAYER: <span id="txtTopPlayer"></span><br>
@@ -384,7 +384,7 @@
             timer = setInterval(game, 1500)
             game()
             score = 0
-            timeLeft = 40
+            timeLeft = 20
             txtTime.innerHTML = timeLeft
         }
 
@@ -438,12 +438,12 @@
                                 // 關閉圖片點擊，因為連續點擊分數會累加
                                 holes[i].classList.add(`clickIgnore`)
                                 // 不要出現負的分數
-                                if (score <= 0) {
-                                    score = 0
-                                    txtScore = score
-                                }
                                 score -= 5
                                 txtScore.innerHTML = score
+                                if (score <= 0) {
+                                    score = 0
+                                    txtScore.innerHTML = score
+                                }
                                 console.log(i)
                             }
                         }
