@@ -90,16 +90,26 @@
             border-radius: 10px;
         }
 
+        #btnCheck {
+            position: absolute;
+            bottom: -30%;
+            left: 5%;
+        }
+
         #btnPicker {
             position: absolute;
-            bottom: -25%;
-            left: 2.5%;
+            bottom: -30%;
+            left: 32.5%;
         }
 
         #btnStart {
             position: absolute;
-            bottom: -35%;
-            left: 25%;
+            bottom: -40%;
+            left: 52.5%;
+        }
+
+        #btnCheck:hover {
+            cursor: pointer;
         }
 
         #btnPicker:hover {
@@ -138,6 +148,10 @@
             padding: 0 3px;
             display: inline-block;
             margin: 60% 5% 0 5%;
+        }
+
+        .clickIgnore {
+            pointer-events: none;
         }
 
         /* 快樂 */
@@ -193,6 +207,7 @@
         /* 噁心 */
         #disgust {
             background: url(./Images/Emotion/disgust.png) no-repeat center center/cover;
+            transform: rotate();
         }
 
         /* 驚訝 */
@@ -215,45 +230,45 @@
     </table>
     <table id="emotion">
         <tr>
-            <td id="hole9">
-                <div class="hole animated slideInUp" id="amusement"></div>
+            <td>
+                <div class="hole animated slideInUp fast" id="excited"></div>
             </td>
-            <td id="hole10">
-                <div class="hole animated slideInUp" id="anger"></div>
+            <td>
+                <div class="hole animated slideInUp fast" id="anger"></div>
             </td>
-            <td id="hole11">
-                <div class="hole animated slideInUp" id="embarrassment"></div>
+            <td>
+                <div class="hole animated slideInUp fast" id="disgust"></div>
             </td>
-            <td id="hole12">
-                <div class="hole animated slideInUp" id="fear"></div>
-            </td>
-        </tr>
-        <tr>
-            <td id="hole5">
-                <div class="hole animated slideInUp" id="happiness"></div>
-            </td>
-            <td id="hole6">
-                <div class="hole animated slideInUp" id="pain"></div>
-            </td>
-            <td id="hole7">
-                <div class="hole animated slideInUp" id="sadness"></div>
-            </td>
-            <td id="hole8">
-                <div class="hole animated slideInUp" id="shame"></div>
+            <td>
+                <div class="hole animated slideInUp fast" id="happiness"></div>
             </td>
         </tr>
         <tr>
-            <td id="hole1">
-                <div class="hole animated slideInUp" id="furious"></div>
+            <td>
+                <div class="hole animated slideInUp fast" id="embarrassment"></div>
             </td>
-            <td id="hole2">
-                <div class="hole animated slideInUp" id="excited"></div>
+            <td>
+                <div class="hole animated slideInUp fast" id="amusement"></div>
             </td>
-            <td id="hole3">
-                <div class="hole animated slideInUp" id="disgust"></div>
+            <td>
+                <div class="hole animated slideInUp fast" id="fear"></div>
             </td>
-            <td id="hole4">
-                <div class="hole animated slideInUp" id="surprise"></div>
+            <td>
+                <div class="hole animated slideInUp fast" id="shame"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="hole animated slideInUp fast" id="furious"></div>
+            </td>
+            <td>
+                <div class="hole animated slideInUp fast" id="sadness"></div>
+            </td>
+            <td>
+                <div class="hole animated slideInUp fast" id="surprise"></div>
+            </td>
+            <td>
+                <div class="hole animated slideInUp fast" id="pain"></div>
             </td>
         </tr>
     </table>
@@ -272,18 +287,21 @@
             <img id="title" src="./Images/game_logo.png" alt="game logo">
         </div>
         <div>
+            <img id="btnCheck" class="animated infinite bounce slow" src="./Images/Cursors/check.png" alt="check faces"
+                title="點我看表情">
             <img id="btnPicker" src="./Images/pinwheel.svg" alt="pinwheel" title="點我選情緒">
             <img id="btnStart" class="animated infinite pulse fast" src=" ./Images/start_button.svg" alt="start button"
                 title="點我玩遊戲">
         </div>
         <div>
+            <span class="txtClickMe">看表情</span>
             <span class="txtClickMe">選情緒</span>
             <span class="txtClickMe">玩遊戲</span>
         </div>
     </section>
     <section id="sectionBottom">
         SCORE: <span id="txtScore">0</span><br>
-        TIME LEFT: <span id="txtTime">0</span><br>
+        TIME LEFT: <span id="txtTime">40</span><br>
         <!-- <br>RANKING -->
         <hr>
         TOP PLAYER: <span id="txtTopPlayer"></span><br>
@@ -293,16 +311,15 @@
     <script>
         const holes = document.getElementsByClassName(`hole`)
         const btnStart = document.getElementById(`btnStart`)
+        const btnPicker = document.getElementById(`btnPicker`)
+        const btnCheck = document.getElementById(`btnCheck`)
         const txtTime = document.getElementById(`txtTime`)
         const txtScore = document.getElementById(`txtScore`)
         const txtTopPlayer = document.getElementById(`txtTopPlayer`)
         const txtHighScore = document.getElementById(`txtHighScore`)
-        const btnPicker = document.getElementById(`btnPicker`)
         const emid = document.getElementsByClassName(`emid`)
         const audio = new Audio()
         audio.src = `./Audio/yay.mp3`
-        // 控制.happiness 裡面的內容
-        // const happiness = document.querySelector(`.happiness`)
         const rand = function (num) {
             return Math.floor(Math.random() * num)
         }
@@ -322,16 +339,31 @@
         }
 
 
+        // 開啟所有表情
+        btnCheck.onclick = function () {
+            for (let h of holes) {
+                h.style.display = `block`
+            }
+        }
+
+
         // 抽表情執行
-        const click = btnPicker.onclick = function () {
-            btnPicker.disabled = true
-            let timer = setInterval(pick, 350)
+        btnPicker.onclick = function () {
+            // 關閉所有表情
+            for (let h of holes) {
+                h.style.display = `none`
+            }
+            // 關閉picker icon 點擊
+            btnPicker.classList.add(`clickIgnore`)
+            // 隨機速度200毫秒
+            let timer = setInterval(pick, 200)
             pick()
-            // 5秒後結束抽表情
+            // 3秒後結束抽表情
             setTimeout(function () {
                 clearInterval(timer)
-                btnPicker.disabled = false
-            }, 5000);
+                // 重啟picker icon 點擊
+                btnPicker.classList.remove(`clickIgnore`)
+            }, 3000);
         }
 
 
@@ -346,16 +378,14 @@
 
         // 遊戲執行
         btnStart.onclick = () => {
-            // 延遲待處理
-            setTimeout(function () {
-                btnStart.disabled = true
-                inGame = true
-                timer = setInterval(game, 2000)
-                game()
-                score = 0
-                timeLeft = 5
-                txtTime.innerHTML = timeLeft
-            }, 100)
+            // 關閉start icon 點擊
+            btnStart.classList.add(`clickIgnore`)
+            inGame = true
+            timer = setInterval(game, 1500)
+            game()
+            score = 0
+            timeLeft = 40
+            txtTime.innerHTML = timeLeft
         }
 
 
@@ -363,15 +393,17 @@
         const game = () => {
             // 清除所有格子的屬性
             for (let i = 0; i < holes.length; i++) {
-                holes[i].classList.remove(`animated`, `rubberBand`)
-                holes[i].classList.add(`animated`, `slideInUp`)
                 holes[i].style.display = `none`
+                holes[i].classList.remove(`clickIgnore`, `animated`, `shake`, `heartBeat`)
+                holes[i].classList.add(`animated`, `slideInUp`)
+                holes[i].style.background = ``
             }
-
-            for (let i = 0; i < 4; i++) {
+            // 一次出現六個表情
+            for (let i = 0; i < 6; i++) {
                 holes[rand(holes.length)].style.display = `block`
-                console.log(rand(holes.length))
+                // console.log(rand(holes.length))
             }
+            // 點擊表情圖片後的回饋
             for (let hole of holes) {
                 hole.onclick = () => {
                     /* 其實這裡不用if 也可以跑
@@ -380,10 +412,42 @@
                     if (inGame && hole.classList.contains(`animated`, `slideInUp`)) {
                      }
                     */
-                    hole.classList.remove(`animated`, `slideInUp`)
-                    hole.classList.add(`animated`, `rubberBand`)
-                    score++
-                    txtScore.innerHTML = score
+
+                    // 這裡是綁定該局抽到的表情文字，需點擊相對應的圖片才有+10分和回饋
+                    for (let i = 0; i < holes.length; i++) {
+                        if (emid[i].classList.contains(`gold`)) {
+                            holes[i].onclick = function () {
+                                holes[i].classList.remove(`animated`, `slideInUp`)
+                                holes[i].classList.add(`animated`, `heartBeat`, `fast`)
+                                // 點擊正確會出現漢堡
+                                holes[i].style.background = `url(./Images/Cursors/burger.png) no-repeat center/30%`
+                                // 關閉圖片點擊，因為連續點擊分數會累加
+                                holes[i].classList.add(`clickIgnore`)
+                                score += 10
+                                txtScore.innerHTML = score
+                                console.log(holes[i].id)
+                            }
+                        }
+                    }
+                    // 這裡是綁定若點擊錯誤的表情圖片，答錯的扣5分和回饋
+                    for (let i = 0; i < emid.length; i++) {
+                        if (!emid[i].classList.contains(`gold`)) {
+                            holes[i].onclick = function () {
+                                holes[i].classList.remove(`animated`, `slideInUp`)
+                                holes[i].classList.add(`animated`, `shake`)
+                                // 關閉圖片點擊，因為連續點擊分數會累加
+                                holes[i].classList.add(`clickIgnore`)
+                                // 不要出現負的分數
+                                if (score <= 0) {
+                                    score = 0
+                                    txtScore = score
+                                }
+                                score -= 5
+                                txtScore.innerHTML = score
+                                console.log(i)
+                            }
+                        }
+                    }
                 }
             }
 
@@ -396,7 +460,8 @@
                 for (let hole of holes) {
                     hole.style.display = `none`
                 }
-                btnStart.disabled = false
+                // 重啟start icon 點擊
+                btnStart.classList.remove(`clickIgnore`)
                 setTimeout(function () {
                     alert(`You score: ${score}`)
                 }, 100)
