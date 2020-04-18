@@ -4,18 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Acme&family=Anton&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./animate.css">
-    <title>Which Emotion Am I?</title>
+    <title>Which Kimochi Am I?</title>
     <style>
         body {
             width: 75%;
             margin: 2.5% auto;
-            background: url(./Images/Emotion/bg2.png) repeat center left;
+            background: url(./Images/bg.png) repeat center left;
             position: relative;
             font-family: Marvel, sans-serif;
             letter-spacing: 2.5px;
             line-height: 2;
-            font-family: Marvel, 微軟正黑體;
+            font-family: 微軟正黑體;
+        }
+
+        #title {
+            width: 120%;
+            position: absolute;
+            top: -15%;
+            left: -10%;
         }
 
         #sectionTop {
@@ -23,7 +31,7 @@
             clear: both;
             font-size: 2rem;
             position: absolute;
-            top: 2.5%;
+            top: 0%;
             right: -12.5%;
         }
 
@@ -34,6 +42,9 @@
             position: absolute;
             bottom: 2.5%;
             right: -12.5%;
+            color: rgba(0, 0, 0, 0.75);
+            font-weight: bold;
+            font-family: 'Acme', sans-serif, 微軟正黑體;
         }
 
         #emotion {
@@ -81,14 +92,14 @@
 
         #btnPicker {
             position: absolute;
-            bottom: 15%;
+            bottom: -25%;
             left: 2.5%;
         }
 
         #btnStart {
             position: absolute;
-            bottom: 9%;
-            right: 34%;
+            bottom: -35%;
+            left: 25%;
         }
 
         #btnPicker:hover {
@@ -126,9 +137,8 @@
             font-weight: bold;
             padding: 0 3px;
             display: inline-block;
-            margin: 50% 17.5% 0 5%;
+            margin: 60% 5% 0 5%;
         }
-
 
         /* 快樂 */
         #amusement {
@@ -258,9 +268,9 @@
         </tr>
     </table>
     <section id="sectionTop">
-        SCORE: <span id="txtScore">0</span><br>
-        TIME LEFT: <span id="txtTime">0</span><br>
-        <hr>
+        <div>
+            <img id="title" src="./Images/game_logo.png" alt="game logo">
+        </div>
         <div>
             <img id="btnPicker" src="./Images/pinwheel.svg" alt="pinwheel" title="點我選情緒">
             <img id="btnStart" class="animated infinite pulse fast" src=" ./Images/start_button.svg" alt="start button"
@@ -272,7 +282,9 @@
         </div>
     </section>
     <section id="sectionBottom">
-        <br><strong>RANKING</strong>
+        SCORE: <span id="txtScore">0</span><br>
+        TIME LEFT: <span id="txtTime">0</span><br>
+        <!-- <br>RANKING -->
         <hr>
         TOP PLAYER: <span id="txtTopPlayer"></span><br>
         HIGHEST SCORE: <span id="txtHighScore">0</span><br>
@@ -345,6 +357,7 @@
                 txtTime.innerHTML = timeLeft
             }, 100)
         }
+
 
         // 遊戲函數
         const game = () => {
