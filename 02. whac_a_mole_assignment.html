@@ -339,11 +339,17 @@
         }
 
 
-        // 開啟所有表情
+        // 開啟/ 關閉所有表情
         btnCheck.onclick = function () {
             for (let h of holes) {
-                h.style.display = `block`
+                if (h.style.display == `none`) {
+                    h.style.display = `block`
+                }
+                else {
+                    h.style.display = `none`
+                }
             }
+
         }
 
 
@@ -440,11 +446,11 @@
                                 // 不要出現負的分數
                                 score -= 5
                                 txtScore.innerHTML = score
+                                console.log(i)
                                 if (score <= 0) {
                                     score = 0
                                     txtScore.innerHTML = score
                                 }
-                                console.log(i)
                             }
                         }
                     }
