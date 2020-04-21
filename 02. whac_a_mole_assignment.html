@@ -155,63 +155,63 @@
         }
 
         /* 快樂 */
-        #amusement {
+        .emotion1 {
             background: url(./Images/Emotion/amusement.png) no-repeat center center/cover;
         }
 
         /* 生氣 */
-        #anger {
+        .emotion2 {
             background: url(./Images/Emotion/anger.png) no-repeat center center/cover;
         }
 
         /* 害羞 */
-        #embarrassment {
+        .emotion3 {
             background: url(./Images/Emotion/embarrassment.png) no-repeat center center/cover;
         }
 
         /* 害怕 */
-        #fear {
+        .emotion4 {
             background: url(./Images/Emotion/fear.png) no-repeat center center/cover;
         }
 
         /* 喜悅 */
-        #happiness {
+        .emotion5 {
             background: url(./Images/Emotion/happiness.png) no-repeat center center/cover;
         }
 
         /* 痛苦 */
-        #pain {
+        .emotion6 {
             background: url(./Images/Emotion/pain_2.png) no-repeat center center/cover;
         }
 
         /* 難過 */
-        #sadness {
+        .emotion7 {
             background: url(./Images/Emotion/sadness.png) no-repeat center center/cover;
         }
 
         /* 羞愧 */
-        #shame {
+        .emotion8 {
             background: url(./Images/Emotion/shame.png) no-repeat center center/cover;
         }
 
         /* 憤怒 */
-        #furious {
+        .emotion9 {
             background: url(./Images/Emotion/furious.png) no-repeat center center/cover;
         }
 
         /* 興奮 */
-        #excited {
+        .emotion10 {
             background: url(./Images/Emotion/excited.png) no-repeat center center/cover;
         }
 
         /* 噁心 */
-        #disgust {
+        .emotion11 {
             background: url(./Images/Emotion/disgust.png) no-repeat center center/cover;
             transform: rotate();
         }
 
         /* 驚訝 */
-        #surprise {
+        .emotion12 {
             background: url(./Images/Emotion/surprise.png) no-repeat center center/cover;
         }
     </style>
@@ -220,66 +220,66 @@
 <body>
     <table id="txtEmotionUp">
         <tr>
-            <td class="borderRight emid">興奮</td>
+            <td class="borderRight emid">快樂</td>
             <td class="borderRight emid">生氣</td>
-            <td class="borderRight emid">噁心</td>
-            <td class="borderRight emid">喜悅</td>
             <td class="borderRight emid">害羞</td>
-            <td class="emid">快樂</td>
+            <td class="borderRight emid">害怕</td>
+            <td class="borderRight emid">喜悅</td>
+            <td class="emid">痛苦</td>
         </tr>
     </table>
     <table id="emotion">
         <tr>
             <td>
-                <div class="hole animated slideInUp fast" id="excited"></div>
+                <div class="hole animated slideInUp fast emotion1"></div>
             </td>
             <td>
-                <div class="hole animated slideInUp fast" id="anger"></div>
+                <div class="hole animated slideInUp fast emotion2"></div>
             </td>
             <td>
-                <div class="hole animated slideInUp fast" id="disgust"></div>
+                <div class="hole animated slideInUp fast emotion3"></div>
             </td>
             <td>
-                <div class="hole animated slideInUp fast" id="happiness"></div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="hole animated slideInUp fast" id="embarrassment"></div>
-            </td>
-            <td>
-                <div class="hole animated slideInUp fast" id="amusement"></div>
-            </td>
-            <td>
-                <div class="hole animated slideInUp fast" id="fear"></div>
-            </td>
-            <td>
-                <div class="hole animated slideInUp fast" id="shame"></div>
+                <div class="hole animated slideInUp fast emotion4"></div>
             </td>
         </tr>
         <tr>
             <td>
-                <div class="hole animated slideInUp fast" id="furious"></div>
+                <div class="hole animated slideInUp fast emotion5"></div>
             </td>
             <td>
-                <div class="hole animated slideInUp fast" id="sadness"></div>
+                <div class="hole animated slideInUp fast emotion6"></div>
             </td>
             <td>
-                <div class="hole animated slideInUp fast" id="surprise"></div>
+                <div class="hole animated slideInUp fast emotion7"></div>
             </td>
             <td>
-                <div class="hole animated slideInUp fast" id="pain"></div>
+                <div class="hole animated slideInUp fast emotion8"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="hole animated slideInUp fast emotion9"></div>
+            </td>
+            <td>
+                <div class="hole animated slideInUp fast emotion10"></div>
+            </td>
+            <td>
+                <div class="hole animated slideInUp fast emotion11"></div>
+            </td>
+            <td>
+                <div class="hole animated slideInUp fast emotion12"></div>
             </td>
         </tr>
     </table>
     <table id="txtEmotionDown">
         <tr>
-            <td class="borderRight emid">害怕</td>
+            <td class="borderRight emid">難過</td>
             <td class="borderRight emid">羞愧</td>
             <td class="borderRight emid">憤怒</td>
-            <td class="borderRight emid">難過</td>
-            <td class="borderRight emid">驚訝</td>
-            <td class="emid">痛苦</td>
+            <td class="borderRight emid">興奮</td>
+            <td class="borderRight emid">噁心</td>
+            <td class="emid">驚訝</td>
         </tr>
     </table>
     <section id="sectionTop">
@@ -402,6 +402,14 @@
             for (let i = 0; i < 6; i++) {
                 holes[rand(holes.length)].style.display = `block`
                 // console.log(rand(holes.length))
+            }
+            // 表情洗牌 
+            console.log(`emotion${rand(holes.length)}`);
+            for (let i = 0; i < holes.length; i++) {
+                // holes[rand(holes.length)].append(holes[i])
+                // console.log(holes[i]);
+                holes[rand(holes.length)].classList.replace(`emotion${i + 1}`, `emotion${rand(holes.length)}`)
+                // console.log(`emotion${rand(holes.length)}`);
             }
             // 點擊表情圖片後的回饋
             for (let hole of holes) {
