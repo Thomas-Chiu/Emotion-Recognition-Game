@@ -318,8 +318,8 @@
         const txtTopPlayer = document.getElementById(`txtTopPlayer`)
         const txtHighScore = document.getElementById(`txtHighScore`)
         const emid = document.getElementsByClassName(`emid`)
+        const fast = document.getElementsByClassName(`fast`)
         const audio = new Audio()
-        audio.src = `./Audio/yay.mp3`
         const rand = function (num) {
             return Math.floor(Math.random() * num)
         }
@@ -389,6 +389,9 @@
         btnStart.onclick = () => {
             // 關閉start icon 點擊
             btnStart.classList.add(`clickIgnore`)
+            // 新增背景音樂
+            audio.src = `./Audio/LUCKY TAPES-  Touch!.mp3`
+            audio.play()
             inGame = true
             timer = setInterval(game, 1500)
             game()
@@ -420,54 +423,26 @@
                 else {
                     holes[rand(holes.length)].classList.replace(`emotion${rand(holes.length)}`, `emotion${goldNum + 1}`)
                 }
-                // holes[i].classList.add(`emotion${ rand(12) } `)
-                // else {
-                //     holes[i].classList.add(`emotion${ rand(holes.length) } `)
-                // }
             }
+
             // 點擊表情圖片後的回饋
             for (let hole of holes) {
                 hole.onclick = () => {
-                    if (hole.classList.contains(`emotion${goldNum + 1} `)) {
+
+                    // 點擊正確表情的回饋
+                    if (hole.classList.contains(`emotion${goldNum + 1}`)) {
+                        console.log(goldNum);
                         hole.classList.remove(`animated`, `slideInUp`)
                         hole.classList.add(`animated`, `heartBeat`, `fast`)
                         // 點擊正確會出現漢堡
-                        hole.style.background = `url(./Images/Cursors / burger.png) no-repeat center/30%`
+                        hole.style.background = `url(./Images/Cursors/burger.png) no-repeat center/30%`
                         // 關閉圖片點擊，因為連續點擊分數會累加
                         hole.classList.add(`clickIgnore`)
                         score += 20
                         txtScore.innerHTML = score
-                        console.log(hole)
                     }
-                    // 這裡是綁定該局抽到的表情文字，需點擊相對應的圖片才有+20分和回饋
-                    // for (let i = 0; i < holes.length; i++) {
-                    //     const emidimg = document.getElementById(`emidimg${ i + 1 } `)
-                    //     if (emid[i].classList.contains(`gold`)) {
-                    //         if (hole.classList.contains(`emotion${ i + 1 } `)) {
-                    //             emidimg.classList.remove(`animated`, `slideInUp`)
-                    //             emidimg.classList.add(`animated`, `heartBeat`, `fast`)
-                    //             // 點擊正確會出現漢堡
-                    //             emidimg.style.background = `url(./Images/Cursors / burger.png) no - repeat center / 30 % `
-                    //             // 關閉圖片點擊，因為連續點擊分數會累加
-                    //             emidimg.classList.add(`clickIgnore`)
-                    //             score += 20
-                    //             txtScore.innerHTML = score
-                    //             console.log(emidimg)
 
-                    //         }
-                    //         // holes[i].onclick = function () {
-                    //         //     emidimg.classList.remove(`animated`, `slideInUp`)
-                    //         //     emidimg.classList.add(`animated`, `heartBeat`, `fast`)
-                    //         //     // 點擊正確會出現漢堡
-                    //         //     emidimg.style.background = `url(./Images/Cursors / burger.png) no - repeat center / 30 % `
-                    //         //     // 關閉圖片點擊，因為連續點擊分數會累加
-                    //         //     emidimg.classList.add(`clickIgnore`)
-                    //         //     score += 20
-                    //         //     txtScore.innerHTML = score
-                    //         //     console.log(emidimg)
-                    //         // }
-
-
+                    // 點擊錯誤表情的回饋
                     for (let i = 0; i < emid.length; i++) {
                         if (!emid[i].classList.contains(`gold`)) {
                             holes[i].onclick = function () {
@@ -475,10 +450,9 @@
                                 holes[i].classList.add(`animated`, `shake`)
                                 // 關閉圖片點擊，因為連續點擊分數會累加
                                 holes[i].classList.add(`clickIgnore`)
-                                // 不要出現負的分數
                                 score -= 5
                                 txtScore.innerHTML = score
-                                console.log(i)
+                                // 不要出現負的分數
                                 if (score <= 0) {
                                     score = 0
                                     txtScore.innerHTML = score
@@ -505,6 +479,7 @@
                 }, 100)
 
                 if (storage == null || score > highScore.score) {
+                    audio.src = `./Audio/yay.mp3`
                     audio.play()
                     const input = prompt(`Congrats, you're the Top! Insert your name.`)
                     if (input != null && input.trim() != ``) {
@@ -517,6 +492,8 @@
                     }
                 }
             }
+
+
         }
     </script>
 </body>
