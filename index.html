@@ -365,7 +365,7 @@
     </section>
     <section id="sectionBottom">
       SCORE: <span id="txtScore">0</span><br />
-      TIME LEFT: <span id="txtTime">20</span><br />
+      TIME LEFT: <span id="txtTime">40</span><br />
       <!-- <br>RANKING -->
       <hr />
       TOP PLAYER: <span id="txtTopPlayer"></span><br />
@@ -505,7 +505,7 @@
               hole.style.background = `url(./Images/Cursors/burger.png) no-repeat center/30%`;
               // 關閉圖片點擊，因為連續點擊分數會累加
               hole.classList.add(`clickIgnore`);
-              score += 20;
+              score += 10;
               txtScore.innerHTML = score;
             }
 
