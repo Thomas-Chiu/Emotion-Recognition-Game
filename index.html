@@ -1,501 +1,565 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Acme&family=Anton&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./animate.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Acme&family=Anton&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./animate.css" />
     <title>Kimoch！</title>
     <style>
-        body {
-            width: 75%;
-            margin: 2.5% auto;
-            background: url(./Images/bg.png) repeat center left;
-            position: relative;
-            font-family: Marvel, sans-serif;
-            letter-spacing: 2.5px;
-            line-height: 2;
-            font-family: 微軟正黑體;
-        }
+      body {
+        width: 75%;
+        margin: 2.5% auto;
+        background: url(./Images/bg.png) repeat center left;
+        position: relative;
+        font-family: Marvel, sans-serif;
+        letter-spacing: 2.5px;
+        line-height: 2;
+        font-family: 微軟正黑體;
+      }
 
-        #title {
-            width: 120%;
-            position: absolute;
-            top: -15%;
-            left: -10%;
-        }
+      #title {
+        width: 120%;
+        position: absolute;
+        top: -15%;
+        left: -10%;
+      }
 
-        #sectionTop {
-            width: 30%;
-            clear: both;
-            font-size: 2rem;
-            position: absolute;
-            top: 0%;
-            right: -12.5%;
-        }
+      #sectionTop {
+        width: 30%;
+        clear: both;
+        font-size: 2rem;
+        position: absolute;
+        top: 0%;
+        right: -12.5%;
+      }
 
-        #sectionBottom {
-            width: 30%;
-            clear: both;
-            font-size: 2rem;
-            position: absolute;
-            bottom: 2.5%;
-            right: -12.5%;
-            color: rgba(0, 0, 0, 0.75);
-            font-weight: bold;
-            font-family: 'Acme', sans-serif, 微軟正黑體;
-        }
+      #sectionBottom {
+        width: 30%;
+        clear: both;
+        font-size: 2rem;
+        position: absolute;
+        bottom: 2.5%;
+        right: -12.5%;
+        color: rgba(0, 0, 0, 0.75);
+        font-weight: bold;
+        font-family: "Acme", sans-serif, 微軟正黑體;
+      }
 
-        #emotion {
-            width: 75%;
-            cursor: url(./Images/Cursors/tap.png) 50 50, auto;
-            border-radius: 10px;
-        }
+      #emotion {
+        width: 75%;
+        cursor: url(./Images/Cursors/tap.png) 50 50, auto;
+        border-radius: 10px;
+      }
 
-        #emotion tr td {
-            width: 200px;
-            height: 200px;
-            /* 隱藏溢出td 的動畫效果 */
-            overflow: hidden;
-            border: 2.5px solid #ccc;
-            background: lightcyan;
-            position: relative;
-            border-radius: 10px;
-        }
+      #emotion tr td {
+        width: 200px;
+        height: 200px;
+        /* 隱藏溢出td 的動畫效果 */
+        overflow: hidden;
+        border: 2.5px solid #ccc;
+        background: lightcyan;
+        position: relative;
+        border-radius: 10px;
+      }
 
-        #txtEmotionUp {
-            width: 75%;
-            color: olive;
-            font-size: 2rem;
-            font-weight: bold;
-            text-align: center;
-            line-height: 2.5;
-            border: 2.5px solid #ccc;
-            background: lightcyan;
-            margin-bottom: 0.5%;
-            border-radius: 10px;
-        }
+      #txtEmotionUp {
+        width: 75%;
+        color: olive;
+        font-size: 2rem;
+        font-weight: bold;
+        text-align: center;
+        line-height: 2.5;
+        border: 2.5px solid #ccc;
+        background: lightcyan;
+        margin-bottom: 0.5%;
+        border-radius: 10px;
+      }
 
-        #txtEmotionDown {
-            width: 75%;
-            color: olive;
-            font-size: 2rem;
-            font-weight: bold;
-            text-align: center;
-            line-height: 2.5;
-            border: 2.5px solid #ccc;
-            background: lightcyan;
-            margin-top: 0.5%;
-            border-radius: 10px;
-        }
+      #txtEmotionDown {
+        width: 75%;
+        color: olive;
+        font-size: 2rem;
+        font-weight: bold;
+        text-align: center;
+        line-height: 2.5;
+        border: 2.5px solid #ccc;
+        background: lightcyan;
+        margin-top: 0.5%;
+        border-radius: 10px;
+      }
 
-        #btnCheck {
-            position: absolute;
-            bottom: -30%;
-            left: 5%;
-        }
+      #btnCheck {
+        position: absolute;
+        bottom: -30%;
+        left: 5%;
+      }
 
-        #btnPicker {
-            position: absolute;
-            bottom: -30%;
-            left: 32.5%;
-        }
+      #btnPicker {
+        position: absolute;
+        bottom: -30%;
+        left: 32.5%;
+      }
 
-        #btnStart {
-            position: absolute;
-            bottom: -40%;
-            left: 52.5%;
-        }
+      #btnStart {
+        position: absolute;
+        bottom: -40%;
+        left: 52.5%;
+      }
 
-        #btnCheck:hover {
-            cursor: pointer;
-        }
+      #btnCheck:hover {
+        cursor: pointer;
+      }
 
-        #btnPicker:hover {
-            cursor: pointer;
-        }
+      #btnPicker:hover {
+        cursor: pointer;
+      }
 
-        #btnStart:hover {
-            cursor: pointer;
-        }
+      #btnStart:hover {
+        cursor: pointer;
+      }
 
-        .finger {
-            width: 75px;
-        }
+      .finger {
+        width: 75px;
+      }
 
-        .borderRight {
-            border-right: 5px dotted #ccc;
-            border-radius: 5%;
-        }
+      .borderRight {
+        border-right: 5px dotted #ccc;
+        border-radius: 5%;
+      }
 
-        .gold {
-            background: gold;
-        }
+      .gold {
+        background: gold;
+      }
 
-        .hole {
-            width: 100%;
-            height: 100%;
-            display: none;
-        }
+      .hole {
+        width: 100%;
+        height: 100%;
+        display: none;
+      }
 
-        .txtClickMe {
-            font-size: 1rem;
-            background-color: darkgray;
-            color: #fff;
-            border-radius: 5px;
-            font-weight: bold;
-            padding: 0 3px;
-            display: inline-block;
-            margin: 60% 5% 0 5%;
-        }
+      .txtClickMe {
+        font-size: 1rem;
+        background-color: darkgray;
+        color: #fff;
+        border-radius: 5px;
+        font-weight: bold;
+        padding: 0 3px;
+        display: inline-block;
+        margin: 60% 5% 0 5%;
+      }
 
-        .clickIgnore {
-            pointer-events: none;
-        }
+      .clickIgnore {
+        pointer-events: none;
+      }
 
-        /* 快樂 */
-        .emotion1 {
-            background: url(./Images/Emotion/amusement.png) no-repeat center center/cover;
-        }
+      /* 快樂 */
+      .emotion1 {
+        background: url(./Images/Emotion/amusement.png) no-repeat center
+          center/cover;
+      }
 
-        /* 生氣 */
-        .emotion2 {
-            background: url(./Images/Emotion/anger.png) no-repeat center center/cover;
-        }
+      /* 生氣 */
+      .emotion2 {
+        background: url(./Images/Emotion/anger.png) no-repeat center
+          center/cover;
+      }
 
-        /* 害羞 */
-        .emotion3 {
-            background: url(./Images/Emotion/embarrassment.png) no-repeat center center/cover;
-        }
+      /* 害羞 */
+      .emotion3 {
+        background: url(./Images/Emotion/embarrassment.png) no-repeat center
+          center/cover;
+      }
 
-        /* 害怕 */
-        .emotion4 {
-            background: url(./Images/Emotion/fear.png) no-repeat center center/cover;
-        }
+      /* 害怕 */
+      .emotion4 {
+        background: url(./Images/Emotion/fear.png) no-repeat center center/cover;
+      }
 
-        /* 喜悅 */
-        .emotion5 {
-            background: url(./Images/Emotion/happiness.png) no-repeat center center/cover;
-        }
+      /* 喜悅 */
+      .emotion5 {
+        background: url(./Images/Emotion/happiness.png) no-repeat center
+          center/cover;
+      }
 
-        /* 痛苦 */
-        .emotion6 {
-            background: url(./Images/Emotion/pain_2.png) no-repeat center center/cover;
-        }
+      /* 痛苦 */
+      .emotion6 {
+        background: url(./Images/Emotion/pain_2.png) no-repeat center
+          center/cover;
+      }
 
-        /* 難過 */
-        .emotion7 {
-            background: url(./Images/Emotion/sadness.png) no-repeat center center/cover;
-        }
+      /* 難過 */
+      .emotion7 {
+        background: url(./Images/Emotion/sadness.png) no-repeat center
+          center/cover;
+      }
 
-        /* 羞愧 */
-        .emotion8 {
-            background: url(./Images/Emotion/shame.png) no-repeat center center/cover;
-        }
+      /* 羞愧 */
+      .emotion8 {
+        background: url(./Images/Emotion/shame.png) no-repeat center
+          center/cover;
+      }
 
-        /* 憤怒 */
-        .emotion9 {
-            background: url(./Images/Emotion/furious.png) no-repeat center center/cover;
-        }
+      /* 憤怒 */
+      .emotion9 {
+        background: url(./Images/Emotion/furious.png) no-repeat center
+          center/cover;
+      }
 
-        /* 興奮 */
-        .emotion10 {
-            background: url(./Images/Emotion/excited.png) no-repeat center center/cover;
-        }
+      /* 興奮 */
+      .emotion10 {
+        background: url(./Images/Emotion/excited.png) no-repeat center
+          center/cover;
+      }
 
-        /* 噁心 */
-        .emotion11 {
-            background: url(./Images/Emotion/disgust.png) no-repeat center center/cover;
-            transform: rotate();
-        }
+      /* 噁心 */
+      .emotion11 {
+        background: url(./Images/Emotion/disgust.png) no-repeat center
+          center/cover;
+        transform: rotate();
+      }
 
-        /* 驚訝 */
-        .emotion12 {
-            background: url(./Images/Emotion/surprise.png) no-repeat center center/cover;
-        }
+      /* 驚訝 */
+      .emotion12 {
+        background: url(./Images/Emotion/surprise.png) no-repeat center
+          center/cover;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <table id="txtEmotionUp">
-        <tr>
-            <td class="borderRight emid">快樂</td>
-            <td class="borderRight emid">生氣</td>
-            <td class="borderRight emid">害羞</td>
-            <td class="borderRight emid">害怕</td>
-            <td class="borderRight emid">喜悅</td>
-            <td class="emid">痛苦</td>
-        </tr>
+      <tr>
+        <td class="borderRight emid">快樂</td>
+        <td class="borderRight emid">生氣</td>
+        <td class="borderRight emid">害羞</td>
+        <td class="borderRight emid">害怕</td>
+        <td class="borderRight emid">喜悅</td>
+        <td class="emid">痛苦</td>
+      </tr>
     </table>
     <table id="emotion">
-        <tr>
-            <td>
-                <div class="hole animated slideInUp fast emotion1" id="emidimg1"></div>
-            </td>
-            <td>
-                <div class="hole animated slideInUp fast emotion2" id="emidimg2"></div>
-            </td>
-            <td>
-                <div class="hole animated slideInUp fast emotion3" id="emidimg3"></div>
-            </td>
-            <td>
-                <div class="hole animated slideInUp fast emotion4" id="emidimg4"></div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="hole animated slideInUp fast emotion5" id="emidimg5"></div>
-            </td>
-            <td>
-                <div class="hole animated slideInUp fast emotion6" id="emidimg6"></div>
-            </td>
-            <td>
-                <div class="hole animated slideInUp fast emotion7" id="emidimg7"></div>
-            </td>
-            <td>
-                <div class="hole animated slideInUp fast emotion8" id="emidimg8"></div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="hole animated slideInUp fast emotion9" id="emidimg9"></div>
-            </td>
-            <td>
-                <div class="hole animated slideInUp fast emotion10" id="emidimg10"></div>
-            </td>
-            <td>
-                <div class="hole animated slideInUp fast emotion11" id="emidimg11"></div>
-            </td>
-            <td>
-                <div class="hole animated slideInUp fast emotion12" id="emidimg12"></div>
-            </td>
-        </tr>
+      <tr>
+        <td>
+          <div
+            class="hole animated slideInUp fast emotion1"
+            id="emidimg1"
+          ></div>
+        </td>
+        <td>
+          <div
+            class="hole animated slideInUp fast emotion2"
+            id="emidimg2"
+          ></div>
+        </td>
+        <td>
+          <div
+            class="hole animated slideInUp fast emotion3"
+            id="emidimg3"
+          ></div>
+        </td>
+        <td>
+          <div
+            class="hole animated slideInUp fast emotion4"
+            id="emidimg4"
+          ></div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div
+            class="hole animated slideInUp fast emotion5"
+            id="emidimg5"
+          ></div>
+        </td>
+        <td>
+          <div
+            class="hole animated slideInUp fast emotion6"
+            id="emidimg6"
+          ></div>
+        </td>
+        <td>
+          <div
+            class="hole animated slideInUp fast emotion7"
+            id="emidimg7"
+          ></div>
+        </td>
+        <td>
+          <div
+            class="hole animated slideInUp fast emotion8"
+            id="emidimg8"
+          ></div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div
+            class="hole animated slideInUp fast emotion9"
+            id="emidimg9"
+          ></div>
+        </td>
+        <td>
+          <div
+            class="hole animated slideInUp fast emotion10"
+            id="emidimg10"
+          ></div>
+        </td>
+        <td>
+          <div
+            class="hole animated slideInUp fast emotion11"
+            id="emidimg11"
+          ></div>
+        </td>
+        <td>
+          <div
+            class="hole animated slideInUp fast emotion12"
+            id="emidimg12"
+          ></div>
+        </td>
+      </tr>
     </table>
     <table id="txtEmotionDown">
-        <tr>
-            <td class="borderRight emid">難過</td>
-            <td class="borderRight emid">羞愧</td>
-            <td class="borderRight emid">憤怒</td>
-            <td class="borderRight emid">興奮</td>
-            <td class="borderRight emid">噁心</td>
-            <td class="emid">驚訝</td>
-        </tr>
+      <tr>
+        <td class="borderRight emid">難過</td>
+        <td class="borderRight emid">羞愧</td>
+        <td class="borderRight emid">憤怒</td>
+        <td class="borderRight emid">興奮</td>
+        <td class="borderRight emid">噁心</td>
+        <td class="emid">驚訝</td>
+      </tr>
     </table>
     <section id="sectionTop">
-        <div>
-            <img id="title" src="./Images/game_logo.png" alt="game logo">
-        </div>
-        <div>
-            <img id="btnCheck" class="animated infinite bounce slow" src="./Images/Cursors/check.png" alt="check faces"
-                title="點我看表情">
-            <img id="btnPicker" src="./Images/pinwheel.svg" alt="pinwheel" title="點我選情緒">
-            <img id="btnStart" class="animated infinite pulse fast" src=" ./Images/start_button.svg" alt="start button"
-                title="點我玩遊戲">
-        </div>
-        <div>
-            <span class="txtClickMe">看表情</span>
-            <span class="txtClickMe">選情緒</span>
-            <span class="txtClickMe">玩遊戲</span>
-        </div>
+      <div>
+        <img id="title" src="./Images/game_logo.png" alt="game logo" />
+      </div>
+      <div>
+        <img
+          id="btnCheck"
+          class="animated infinite bounce slow"
+          src="./Images/Cursors/check.png"
+          alt="check faces"
+          title="點我看表情"
+        />
+        <img
+          id="btnPicker"
+          src="./Images/pinwheel.svg"
+          alt="pinwheel"
+          title="點我選情緒"
+        />
+        <img
+          id="btnStart"
+          class="animated infinite pulse fast"
+          src=" ./Images/start_button.svg"
+          alt="start button"
+          title="點我玩遊戲"
+        />
+      </div>
+      <div>
+        <span class="txtClickMe">看表情</span>
+        <span class="txtClickMe">選情緒</span>
+        <span class="txtClickMe">玩遊戲</span>
+      </div>
     </section>
     <section id="sectionBottom">
-        SCORE: <span id="txtScore">0</span><br>
-        TIME LEFT: <span id="txtTime">20</span><br>
-        <!-- <br>RANKING -->
-        <hr>
-        TOP PLAYER: <span id="txtTopPlayer"></span><br>
-        HIGHEST SCORE: <span id="txtHighScore">0</span><br>
+      SCORE: <span id="txtScore">0</span><br />
+      TIME LEFT: <span id="txtTime">20</span><br />
+      <!-- <br>RANKING -->
+      <hr />
+      TOP PLAYER: <span id="txtTopPlayer"></span><br />
+      HIGHEST SCORE: <span id="txtHighScore">0</span><br />
     </section>
 
     <script>
-        const holes = document.getElementsByClassName(`hole`)
-        const btnStart = document.getElementById(`btnStart`)
-        const btnPicker = document.getElementById(`btnPicker`)
-        const btnCheck = document.getElementById(`btnCheck`)
-        const txtTime = document.getElementById(`txtTime`)
-        const txtScore = document.getElementById(`txtScore`)
-        const txtTopPlayer = document.getElementById(`txtTopPlayer`)
-        const txtHighScore = document.getElementById(`txtHighScore`)
-        const emid = document.getElementsByClassName(`emid`)
-        const fast = document.getElementsByClassName(`fast`)
-        const audio = new Audio()
-        const rand = function (num) {
-            return Math.floor(Math.random() * num)
+      const holes = document.getElementsByClassName(`hole`);
+      const btnStart = document.getElementById(`btnStart`);
+      const btnPicker = document.getElementById(`btnPicker`);
+      const btnCheck = document.getElementById(`btnCheck`);
+      const txtTime = document.getElementById(`txtTime`);
+      const txtScore = document.getElementById(`txtScore`);
+      const txtTopPlayer = document.getElementById(`txtTopPlayer`);
+      const txtHighScore = document.getElementById(`txtHighScore`);
+      const emid = document.getElementsByClassName(`emid`);
+      const fast = document.getElementsByClassName(`fast`);
+      const audio = new Audio();
+      const rand = function (num) {
+        return Math.floor(Math.random() * num);
+      };
+
+      let score = 0;
+      let inGame = false;
+      let timeLeft = 0;
+      let timer = 0;
+      let highScore = { name: ``, score: 0 };
+      let goldNum = 0;
+
+      // 若有(最高分) 記錄，會儲存到localStroage 裡面
+      let storage = JSON.parse(localStorage.getItem(`highScore`));
+      if (storage != null) {
+        highScore.name = storage.name;
+        highScore.score = storage.score;
+        txtTopPlayer.innerHTML = highScore.name;
+        txtHighScore.innerHTML = highScore.score;
+      }
+
+      // 開啟/ 關閉所有表情
+      btnCheck.onclick = function () {
+        for (let h of holes) {
+          if (h.style.display == `none`) {
+            h.style.display = `block`;
+          } else {
+            h.style.display = `none`;
+          }
+        }
+      };
+
+      // 抽表情執行
+      btnPicker.onclick = function () {
+        // 關閉所有表情
+        for (let h of holes) {
+          h.style.display = `none`;
+        }
+        // 關閉picker icon 點擊
+        btnPicker.classList.add(`clickIgnore`);
+        // 隨機速度200毫秒
+        let timer = setInterval(pick, 200);
+        pick();
+        // 3秒後結束抽表情
+        setTimeout(function () {
+          clearInterval(timer);
+          // 重啟picker icon 點擊
+          btnPicker.classList.remove(`clickIgnore`);
+        }, 3000);
+      };
+
+      // 抽表情函數
+      const pick = function () {
+        for (let e of emid) {
+          e.classList.remove(`gold`);
+        }
+        goldNum = rand(emid.length);
+        // goldnum 變數儲存題目位置(數值)
+        emid[goldNum].classList.add(`gold`);
+      };
+
+      // 遊戲執行
+      btnStart.onclick = () => {
+        // 關閉start icon 點擊
+        btnStart.classList.add(`clickIgnore`);
+        // 新增背景音樂
+        audio.src = `./Audio/LUCKY TAPES-  Touch!.mp3`;
+        audio.play();
+        inGame = true;
+        timer = setInterval(game, 1500);
+        game();
+        score = 0;
+        timeLeft = 40;
+        txtTime.innerHTML = timeLeft;
+      };
+
+      // 遊戲函數
+      const game = () => {
+        // 清除所有格子的屬性
+        for (let i = 0; i < holes.length; i++) {
+          holes[i].style.display = `none`;
+          holes[i].classList.remove(
+            `clickIgnore`,
+            `animated`,
+            `shake`,
+            `heartBeat`
+          );
+          holes[i].classList.add(`animated`, `slideInUp`);
+          holes[i].style.background = ``;
+          // holes[i].classList.remove(`emotion${i + 1}`)
+        }
+        // 一次出現六個表情
+        for (let i = 0; i < 6; i++) {
+          holes[rand(holes.length)].style.display = `block`;
+        }
+        // 表情洗牌 (待優化)
+        for (let i = 0; i < holes.length; i++) {
+          if (rand(10) > 5) {
+            holes[rand(holes.length)].classList.replace(
+              `emotion${rand(holes.length)}`,
+              `emotion${i + 1}`
+            );
+          } else {
+            holes[rand(holes.length)].classList.replace(
+              `emotion${rand(holes.length)}`,
+              `emotion${goldNum + 1}`
+            );
+          }
         }
 
-        let score = 0
-        let inGame = false
-        let timeLeft = 0
-        let timer = 0
-        let highScore = { name: ``, score: 0 }
-        let goldNum = 0;
+        // 點擊表情圖片後的回饋
+        for (let hole of holes) {
+          hole.onclick = () => {
+            // 點擊正確表情的回饋
+            if (hole.classList.contains(`emotion${goldNum + 1}`)) {
+              console.log(goldNum);
+              hole.classList.remove(`animated`, `slideInUp`);
+              hole.classList.add(`animated`, `heartBeat`, `fast`);
+              // 點擊正確會出現漢堡
+              hole.style.background = `url(./Images/Cursors/burger.png) no-repeat center/30%`;
+              // 關閉圖片點擊，因為連續點擊分數會累加
+              hole.classList.add(`clickIgnore`);
+              score += 20;
+              txtScore.innerHTML = score;
+            }
 
-        // 這行看不懂
-        let storage = JSON.parse(localStorage.getItem(`highScore`))
-        if (storage != null) {
-            highScore.name = storage.name
-            highScore.score = storage.score
-            txtTopPlayer.innerHTML = highScore.name
-            txtHighScore.innerHTML = highScore.score
+            // 點擊錯誤表情的回饋
+            for (let i = 0; i < emid.length; i++) {
+              if (!emid[i].classList.contains(`gold`)) {
+                holes[i].onclick = function () {
+                  holes[i].classList.remove(`animated`, `slideInUp`);
+                  holes[i].classList.add(`animated`, `shake`);
+                  // 關閉圖片點擊，因為連續點擊分數會累加
+                  holes[i].classList.add(`clickIgnore`);
+                  score -= 5;
+                  txtScore.innerHTML = score;
+                  // 不要出現負的分數
+                  if (score <= 0) {
+                    score = 0;
+                    txtScore.innerHTML = score;
+                  }
+                };
+              }
+            }
+          };
         }
 
+        timeLeft--;
+        txtTime.innerHTML = timeLeft;
 
-        // 開啟/ 關閉所有表情
-        btnCheck.onclick = function () {
-            for (let h of holes) {
-                if (h.style.display == `none`) {
-                    h.style.display = `block`
-                }
-                else {
-                    h.style.display = `none`
-                }
+        if (timeLeft == 0) {
+          inGame = false;
+          clearInterval(timer);
+          for (let hole of holes) {
+            hole.style.display = `none`;
+          }
+          // 重啟start icon 點擊
+          btnStart.classList.remove(`clickIgnore`);
+          setTimeout(function () {
+            alert(`You score: ${score} `);
+          }, 100);
+          // 若localStroage 沒東西或出現新的最高分
+          if (storage == null || score > highScore.score) {
+            audio.src = `./Audio/yay.mp3`;
+            audio.play();
+            const input = prompt(`Congrats, you're the Top! Insert your name.`);
+            if (input != null && input.trim() != ``) {
+              highScore.name = input;
+              highScore.score = score;
+              txtTopPlayer.innerHTML = highScore.name;
+              txtHighScore.innerHTML = highScore.score;
+              // 從localStrooage 取出最高分記錄顯示在網頁上
+              localStorage.setItem(`highScore`, JSON.stringify(highScore));
             }
+          }
         }
-
-
-        // 抽表情執行
-        btnPicker.onclick = function () {
-            // 關閉所有表情
-            for (let h of holes) {
-                h.style.display = `none`
-            }
-            // 關閉picker icon 點擊
-            btnPicker.classList.add(`clickIgnore`)
-            // 隨機速度200毫秒
-            let timer = setInterval(pick, 200)
-            pick()
-            // 3秒後結束抽表情
-            setTimeout(function () {
-                clearInterval(timer)
-                // 重啟picker icon 點擊
-                btnPicker.classList.remove(`clickIgnore`)
-            }, 3000);
-        }
-
-
-        // 抽表情函數
-        const pick = function () {
-            for (let e of emid) {
-                e.classList.remove(`gold`)
-            }
-            goldNum = rand(emid.length);
-            // goldnum 變數儲存題目位置(數值)
-            emid[goldNum].classList.add(`gold`)
-        }
-
-
-        // 遊戲執行
-        btnStart.onclick = () => {
-            // 關閉start icon 點擊
-            btnStart.classList.add(`clickIgnore`)
-            // 新增背景音樂
-            audio.src = `./Audio/LUCKY TAPES-  Touch!.mp3`
-            audio.play()
-            inGame = true
-            timer = setInterval(game, 1500)
-            game()
-            score = 0
-            timeLeft = 20
-            txtTime.innerHTML = timeLeft
-        }
-
-
-        // 遊戲函數
-        const game = () => {
-            // 清除所有格子的屬性
-            for (let i = 0; i < holes.length; i++) {
-                holes[i].style.display = `none`
-                holes[i].classList.remove(`clickIgnore`, `animated`, `shake`, `heartBeat`)
-                holes[i].classList.add(`animated`, `slideInUp`)
-                holes[i].style.background = ``
-                // holes[i].classList.remove(`emotion${i + 1}`)
-            }
-            // 一次出現六個表情
-            for (let i = 0; i < 6; i++) {
-                holes[rand(holes.length)].style.display = `block`
-            }
-            // 表情洗牌 (待優化)
-            for (let i = 0; i < holes.length; i++) {
-                if (rand(10) > 5) {
-                    holes[rand(holes.length)].classList.replace(`emotion${rand(holes.length)}`, `emotion${i + 1}`)
-                }
-                else {
-                    holes[rand(holes.length)].classList.replace(`emotion${rand(holes.length)}`, `emotion${goldNum + 1}`)
-                }
-            }
-
-            // 點擊表情圖片後的回饋
-            for (let hole of holes) {
-                hole.onclick = () => {
-
-                    // 點擊正確表情的回饋
-                    if (hole.classList.contains(`emotion${goldNum + 1}`)) {
-                        console.log(goldNum);
-                        hole.classList.remove(`animated`, `slideInUp`)
-                        hole.classList.add(`animated`, `heartBeat`, `fast`)
-                        // 點擊正確會出現漢堡
-                        hole.style.background = `url(./Images/Cursors/burger.png) no-repeat center/30%`
-                        // 關閉圖片點擊，因為連續點擊分數會累加
-                        hole.classList.add(`clickIgnore`)
-                        score += 20
-                        txtScore.innerHTML = score
-                    }
-
-                    // 點擊錯誤表情的回饋
-                    for (let i = 0; i < emid.length; i++) {
-                        if (!emid[i].classList.contains(`gold`)) {
-                            holes[i].onclick = function () {
-                                holes[i].classList.remove(`animated`, `slideInUp`)
-                                holes[i].classList.add(`animated`, `shake`)
-                                // 關閉圖片點擊，因為連續點擊分數會累加
-                                holes[i].classList.add(`clickIgnore`)
-                                score -= 5
-                                txtScore.innerHTML = score
-                                // 不要出現負的分數
-                                if (score <= 0) {
-                                    score = 0
-                                    txtScore.innerHTML = score
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            timeLeft--
-            txtTime.innerHTML = timeLeft
-
-            if (timeLeft == 0) {
-                inGame = false
-                clearInterval(timer)
-                for (let hole of holes) {
-                    hole.style.display = `none`
-                }
-                // 重啟start icon 點擊
-                btnStart.classList.remove(`clickIgnore`)
-                setTimeout(function () {
-                    alert(`You score: ${score} `)
-                }, 100)
-
-                if (storage == null || score > highScore.score) {
-                    audio.src = `./Audio/yay.mp3`
-                    audio.play()
-                    const input = prompt(`Congrats, you're the Top! Insert your name.`)
-                    if (input != null && input.trim() != ``) {
-                        highScore.name = input
-                        highScore.score = score
-                        txtTopPlayer.innerHTML = highScore.name
-                        txtHighScore.innerHTML = highScore.score
-                        // 這邊看不懂
-                        localStorage.setItem(`highScore`, JSON.stringify(highScore))
-                    }
-                }
-            }
-
-
-        }
+      };
     </script>
-</body>
-
+  </body>
 </html>
