@@ -42,21 +42,17 @@ btnCheck.onclick = function () {
 
 // 抽表情執行
 btnPicker.onclick = function () {
-  // 關閉所有表情
-  for (let h of holes) {
-    h.style.display = `none`;
-  }
   // 關閉picker icon 點擊
   btnPicker.classList.add(`clickIgnore`);
   // 隨機速度200毫秒
   let timer = setInterval(pick, 200);
   pick();
-  // 3秒後結束抽表情
+  // 1.5秒後結束抽表情
   setTimeout(function () {
     clearInterval(timer);
     // 重啟picker icon 點擊
     btnPicker.classList.remove(`clickIgnore`);
-  }, 3000);
+  }, 1500);
 };
 
 // 抽表情函數
@@ -71,16 +67,20 @@ const pick = function () {
 
 // 遊戲執行
 btnStart.onclick = () => {
+  // 關閉所有表情
+  // for (let h of holes) {
+  //   h.style.display = `none`;
+  // }
   // 關閉start icon 點擊
   btnStart.classList.add(`clickIgnore`);
   // 新增背景音樂
   audio.src = `./Audio/LUCKY TAPES-  Touch!.mp3`;
   audio.play();
   inGame = true;
-  timer = setInterval(game, 1500);
+  timer = setInterval(game, 1000);
   game();
   score = 0;
-  timeLeft = 40;
+  timeLeft = 20;
   txtTime.innerHTML = timeLeft;
 };
 
